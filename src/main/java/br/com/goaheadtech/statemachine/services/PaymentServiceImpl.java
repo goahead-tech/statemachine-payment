@@ -1,3 +1,14 @@
+/* POC: Spring State Machine -> https://spring.io/projects/spring-statemachine
+ * Author: Jandiro Arao
+ * Projeto: Regulatory Afairs
+ * Observação: Ter instalado o lombok -> https://projectlombok.org/download
+ * Usar o PaymentServiceImplTest com o JUnit para rodar os testes.
+ * 
+ * */
+/* Aqui guardamos o estado da maquina enquanto aguardamos aprovação ou alguma 
+ * outra transação acontecer
+ * Para enviarmos as mensagens utilizamos o spring message nesse caso.*/
+
 package br.com.goaheadtech.statemachine.services;
 
 import br.com.goaheadtech.statemachine.model.Payment;

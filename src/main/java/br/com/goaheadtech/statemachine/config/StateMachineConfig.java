@@ -1,5 +1,22 @@
-package br.com.goaheadtech.statemachine.config;
+/* POC: Spring State Machine -> https://spring.io/projects/spring-statemachine
+ * Author: Jandiro Arao
+ * Projeto: Regulatory Afairs
+ * Observação: Ter instalado o lombok -> https://projectlombok.org/download
+ * Usar o PaymentServiceImplTest com o JUnit para rodar os testes.
+ * 
+ * */
 
+/* O spring vai passar por esse componente e habilitando o 
+ * EnableStateMachineFactory a gente vai ter um
+ * componente para gerar a mudança de estados.
+ * informamos que o estado começa com new e carregamos os estados seguintes.
+ * Os eventos podem mudar o estado da maquina ou não de acordo com nossa necessidade.
+ * O evento PRE_AUTH não muda o estado da maquina, por exemplo.
+ * A mudança de estado ocorre do source para o target com um event para indicar a 
+ * mudança.
+ *
+*/
+package br.com.goaheadtech.statemachine.config;
 import br.com.goaheadtech.statemachine.enums.PaymentEvent;
 import br.com.goaheadtech.statemachine.enums.PaymentState;
 import br.com.goaheadtech.statemachine.services.PaymentServiceImpl;
@@ -36,7 +53,7 @@ public class StateMachineConfig extends StateMachineConfigurerAdapter<PaymentSta
     @Override
     public void configure(StateMachineTransitionConfigurer<PaymentState, PaymentEvent> transitions) throws Exception {
         transitions.withExternal().source(PaymentState.NEW).target(PaymentState.NEW).event(PaymentEvent.PRE_AUTHORIZE)
-                    .action(preAuthAction())
+                    .action(preAuthAction())//não houve mudança de estado com o evento acima.
                 .and()
                 .withExternal().source(PaymentState.NEW).target(PaymentState.PRE_AUTH).event(PaymentEvent.PRE_AUTH_APPROVED)
                 .and()

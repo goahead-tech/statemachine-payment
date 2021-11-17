@@ -1,3 +1,11 @@
+/* POC: Spring State Machine -> https://spring.io/projects/spring-statemachine
+ * Author: Jandiro Arao
+ * Projeto: Regulatory Afairs
+ * Observação: Ter instalado o lombok -> https://projectlombok.org/download
+ * Usar o PaymentServiceImplTest com o JUnit para rodar os testes.
+ * 
+ * */
+
 package br.com.goaheadtech.statemachine.config;
 
 import br.com.goaheadtech.statemachine.enums.PaymentEvent;
@@ -19,7 +27,7 @@ class StateMachineConfigTest {
     @Test
     void testNewStateMachine() {
         StateMachine<PaymentState, PaymentEvent> sm = factory.getStateMachine(UUID.randomUUID());
-
+        //Aqui startamos a state machine
         sm.start();
 
         System.out.println(sm.getState().toString());
